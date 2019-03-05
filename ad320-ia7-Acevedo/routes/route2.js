@@ -1,30 +1,35 @@
 const express = require('express'),
     router = express.Router(),
-    // colors = require('../colors.json'),
-    fs = require('fs'),
-    contents = fs.readFileSync('../colors.json'),
-    colors = JSON.parse(contents);
+    colors = require('../colors.json');
 
+// router.get('/black', (req, res, next) => {
+//     // let object = colors.colors;
+//     // let colorName = req.params.color.toLowerCase();
+//     // for (let i; i < object.length; i++){
+//     //     console.log("Color JSON");
+//     //     if (JSON.stringify(object[i].color) === colorName){
+//     //         res.send(object[i].color);
+//     //     }
+//     // }
+//     // // if (object.color == colorName){
+//     // //     res.send(console.log("Color JSON"));
+//     // // }
+//     res.send(colors.colors);
+//     // res.status(404).send("Error 404: "+colorName+" Not found!");
+// });
 
-router.get('/all', (req, res) => {
+router.get('/all', (req, res, next) => {
     res.send(colors.colors);
 });
 
-router.get('/:color', (req, res) => {
+router.get('/:color', (req, res, next) => {
     let object = colors.colors;
-    const colorName = req.params.toLowerCase();
-    console.log("Color JSON");
-    // for (let i in object){
-    //     console.log("Color JSON");
-    //     if (object[i].color === colorName){
-    //         res.send(object[i]);
-    //     }
-    // }
-
-    if (object.color == colorName){
-        res.send(object.color);
+    let colorName = req.params.color.toLowerCase();
+    for (let i in object){
+        console.log("Color JSON");
+        if (object[i].color === colorName){
+            res.send(object[i]);
+        }
     }
-    res.status(404).send("Error 404: "+colorName+" Not found!");
-});
-
+    res.status(404).send("Error 404: "+colorName+" Not found!");});
 module.exports = router;
