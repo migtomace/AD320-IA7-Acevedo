@@ -1,7 +1,7 @@
 let div = document.getElementById("color");
 div.style.backgroundColor = "red";
 
-div.addEventListener("click", function () {
+div.addEventListener("click", () =>  {
     var color = div.style.backgroundColor;
 
     console.log("testing");
